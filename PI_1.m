@@ -130,16 +130,30 @@ plot(E2, 'green')
 plot(E3, 'blue')
 hold off
 
-
+[pks,locs] = findpeaks(M);
 
 %%
 %absorbancia
-
-figure('name','absorbancia'), plot(-log(E1./EB),'red')
+red= -log(E1./EB);
+blue= -log(E3./EB);
+green= -log(E2./EB);
+figure('name','absorbancia'), 
+plot(red,'red'), 
 hold on
-plot(-log(E3./EB),'blue')
-plot(-log(E2./EB),'green')
+plot(blue,'blue')
+plot(green,'green')
 hold off
+
+[pks_red,locs_red] = findpeaks(red);
+max(max(pks_red))
+figure, plot(red,'red')
+hold on
+plot(max(max(pks_red)),'*')
+hold off
+
+axis(red)
+
+
 
 %%
 % Análisis de resolución
@@ -283,9 +297,9 @@ m=max(FH1p);%obtengo máximo del blanco
 FH1pn=FH1p./m;%promedio normalizado
 
 FH2= imread('010818FH-2.arw');
-figure ('name', 'FH2'), imshow(FH2);
+%figure ('name', 'FH2'), imshow(FH2);
 FH2c=FH2(1100:1700,:,:);
-figure ('name', 'FH2c'), imshow(FH2c);
+%figure ('name', 'FH2c'), imshow(FH2c);
 FH2g=rgb2gray(FH2c);
 FH2p=mean(FH2g);%promedio
 m=max(FH2p);%obtengo máximo del blanco
@@ -355,7 +369,6 @@ FH8pn=FH8p./m;%promedio normalizado
 
 figure, title('Comparación de intensidad ISO 400 - Variación de SS de 4000 a 10000 '),
 hold on
-plot(FH1pn)
 plot(FH2pn)
 plot(FH3pn)
 plot(FH4pn)
@@ -363,5 +376,102 @@ plot(FH5pn)
 plot(FH6pn)
 plot(FH7pn)
 plot(FH8pn)
-legend('FH1', 'FH2', 'FH3', 'FH4', 'FH5', 'FH6', 'FH7', 'FH8')
+legend('FH2-SS-5000-ISO-400', 'FH3-SS-5000-ISO-400', 'FH4-SS-6000-ISO-400', 'FH5-SS-7000-ISO-400', 'FH6-SS-8000-ISO-400', 'FH7-SS-9000-ISO-400', 'FH8-SS-10000-ISO-400')
+hold off
+
+% Comparación SS de 4000 - Variación de ISO 400 a 800
+
+FH9= imread('010818FH-9.arw');
+%figure ('name', 'FH9'), imshow(FH9);
+FH9c=FH9(1100:1700,:,:);
+%figure ('name', 'FH9c'), imshow(FH9c);
+FH9g=rgb2gray(FH9c);
+FH9p=mean(FH9g);%promedio
+m=max(FH9p);%obtengo máximo del blanco
+FH9pn=FH9p./m;%promedio normalizado
+
+FH10= imread('010818FH-10.arw');
+%figure ('name', 'FH10'), imshow(FH10);
+FH10c=FH10(1100:1700,:,:);
+%figure ('name', 'FH10c'), imshow(FH10c);
+FH10g=rgb2gray(FH10c);
+FH10p=mean(FH10g);%promedio
+m=max(FH10p);%obtengo máximo del blanco
+FH10pn=FH10p./m;%promedio normalizado
+
+FH11= imread('010818FH-11.arw');
+%figure ('name', 'FH11'), imshow(FH11);
+FH11c=FH11(1100:1700,:,:);
+%figure ('name', 'FH11c'), imshow(FH11c);
+FH11g=rgb2gray(FH11c);
+FH11p=mean(FH11g);%promedio
+m=max(FH11p);%obtengo máximo del blanco
+FH11pn=FH11p./m;%promedio normalizado
+
+FH12= imread('010818FH-12.arw');
+%figure ('name', 'FH12'), imshow(FH12);
+FH12c=FH12(1100:1700,:,:);
+%figure ('name', 'FH12c'), imshow(FH12c);
+FH12g=rgb2gray(FH12c);
+FH12p=mean(FH12g);%promedio
+m=max(FH12p);%obtengo máximo del blanco
+FH12pn=FH12p./m;%promedio normalizado
+
+figure, title('Comparación SS de 4000 - Variación de ISO 400 a 800'),
+hold on
+plot(FH2pn)
+plot(FH9pn)
+plot(FH10pn)
+plot(FH11pn)
+plot(FH12pn)
+legend('FH2-SS-4000-ISO-400', 'FH9-SS-4000-ISO-500', 'FH10-SS-4000-ISO-600', 'FH11-SS-4000-ISO-700', 'FH12-SS-4000-ISO-800')
+hold off
+
+
+% Comparación SS de 5000 - Variación de ISO 400 a 800
+
+FH13= imread('010818FH-13.arw');
+%figure ('name', 'FH13'), imshow(FH13);
+FH13c=FH13(1100:1700,:,:);
+%figure ('name', 'FH13c'), imshow(FH13c);
+FH13g=rgb2gray(FH13c);
+FH13p=mean(FH13g);%promedio
+m=max(FH13p);%obtengo máximo del blanco
+FH13pn=FH13p./m;%promedio normalizado
+
+FH14= imread('010818FH-14.arw');
+%figure ('name', 'FH14'), imshow(FH14);
+FH14c=FH14(1100:1700,:,:);
+%figure ('name', 'FH14c'), imshow(FH14c);
+FH14g=rgb2gray(FH14c);
+FH14p=mean(FH14g);%promedio
+m=max(FH14p);%obtengo máximo del blanco
+FH14pn=FH14p./m;%promedio normalizado
+
+FH15= imread('010818FH-15.arw');
+%figure ('name', 'FH15'), imshow(FH15);
+FH15c=FH15(1100:1700,:,:);
+%figure ('name', 'FH15c'), imshow(FH15c);
+FH15g=rgb2gray(FH15c);
+FH15p=mean(FH15g);%promedio
+m=max(FH15p);%obtengo máximo del blanco
+FH15pn=FH15p./m;%promedio normalizado
+
+FH16= imread('010818FH-16.arw');
+%figure ('name', 'FH16'), imshow(FH16);
+FH16c=FH16(1100:1700,:,:);
+%figure ('name', 'FH16c'), imshow(FH16c);
+FH16g=rgb2gray(FH16c);
+FH16p=mean(FH16g);%promedio
+m=max(FH16p);%obtengo máximo del blanco
+FH16pn=FH16p./m;%promedio normalizado
+
+figure, title('Comparación SS de 5000 - Variación de ISO 400 a 800'),
+hold on
+plot(FH3pn)
+plot(FH13pn)
+plot(FH14pn)
+plot(FH15pn)
+plot(FH16pn)
+legend('FH3-SS-5000-ISO-400', 'FH13-SS-5000-ISO-500', 'FH14-SS-5000-ISO-600', 'FH15-SS-5000-ISO-700', 'FH16-SS-5000-ISO-800')
 hold off
